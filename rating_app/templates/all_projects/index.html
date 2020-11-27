@@ -1,11 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h3>welcome</h3>
-</body>
-</html>
+{%extends 'all_projects/base.html'%}
+
+{% block content %}
+<br> <br>
+<div class="container">
+<h2>PROJECTS</h2>
+{% for project in projects %}
+    <div class="row" id="project">
+        <div class="col-md-3" id="work4">
+            <a target="_blank" href="{{ project.live_link}}"><img id="port" src="{{project.image.url}}" alt="projec_img"></a>
+            <p id="overlay" class="text"><a href="{{ project.live_link}}"></a></p>
+            <p>{{project.description}}</p>
+            <P>{{project.developer}}</P>
+        </div>
+    </div>
+</div> 
+
+{% endfor %}
+{% endblock %}

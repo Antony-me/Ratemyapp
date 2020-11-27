@@ -1,0 +1,38 @@
+<div class="ui menu nav mb-7">
+  <div class="ui container ">
+    <a href="" class="item">
+      <h3>RateMyApp</h3>
+    </a>
+    <div class="right menu class="topnav" id="myTopnav">
+      {% if request.user.is_authenticated %}
+      <div class="item icon">
+        <form class="navbar-form" role="search" action="">
+          <div class="ui action left icon input">
+            <input class="form-control" type="text"  placeholder="search friend by name..."  name="search_user">
+            <i class="search icon"></i>
+            <button type='submit' class="ui button" role="search" action="">Search</button>
+          </div>
+        </form> 
+
+      </div>
+      <a href="" class="">
+        <img src="" class="ui avatar image">&nbsp;
+        {{ request.user }}
+      </a>
+      <a href="" class="item">
+        All users
+      </a>
+      <a href="" class="item">
+        Requests
+      </a>
+      <a href="" class="ui item">
+        Logout
+      </a>
+      {% else %}
+      <a href="" class="ui item">
+        Login
+      </a>
+      {% endif %}
+    </div>
+  </div>
+</div>

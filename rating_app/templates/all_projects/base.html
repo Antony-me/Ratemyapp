@@ -1,0 +1,33 @@
+{% load bootstrap4 %}
+{% load cloudinary %}
+{% load static%}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  {% if title %}
+  <title>Rate-my-app - {{title}}</title>
+  {% else %}
+    <title> Rate-my-app  </title>
+  {% endif %}
+
+  {% block styles %}
+    {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  {% endblock %}
+
+</head>
+<body>
+    {% include 'navbar.html' %}
+    {% block content %}{%endblock%}
+
+
+    {% block scripts %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="{% static '/js/scripts.js'%}"></script>
+     {% bootstrap_javascript %}
+    {% endblock %}
+</body>
+</html>
