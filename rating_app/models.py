@@ -1,17 +1,18 @@
 from django.db import models
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
+from django.core.validators import FileExtensionValidator
 
-# Create your models here.
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar = models.ImageField(default='default.jpg', upload_to='avatars/')
+    avatar =CloudinaryField('image', default="media/avater.png", validators=[FileExtensionValidator(['png', 'jpg', 'jpeg'])], blank=True)
     bio = models.TextField(max_length=500, blank=True, default=f'Hello, I am new here!')
 
 
 class Project(models.Model):
     title = models.CharField(max_length=150)
-    image = models.ImageField(upload_to='images/')
+    image = CloudinaryField('image',validators=[FileExtensionValidator(['png', 'jpg', 'jpeg'])], blank=True)
     live_link = models.URLField()
     description = models.TextField(blank=True)
     profile = models.ForeignKey('Profile', on_delete=models.CASCADE)
