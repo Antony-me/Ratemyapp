@@ -1,25 +1,28 @@
 from rating_app.models import Post, Rating
 from django.shortcuts import render, redirect
 from .models import Profile
-
+from django.contrib.auth.models import User
+from .forms import NewPostForm
 # Create your views here.
 def index(request):
     """
     home view function
     """
     posts = Post.objects.all()
-    # rating_value = Rating.objects.get(id=id)
-    # print(rating_value)
+    users = User.objects.exclude(id=request.user.id)
+    current_user = request.user
 
-    return render (request, 'all_projects/index.html', {'posts':posts})
+    return render (request, 'all_projects/index.html', {'posts':posts, 'users':users, 'user':current_user})
 
-
-def vote(request, post_id):
-    user = request.user
+def new_post(request):
+    current_user = request.user
     if request.method == 'POST':
-        post_id = request.POST.get('post_id')
-        post = Post.objects.get(id=post_id)
-        rating_value = Rating.objects.get(id=post_id)
-        print(rating_value)
-
-    return redirect('index')
+        form = NewPostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = current_user
+            post.save()
+        return redirect('landing')
+    else:
+        form = NewPostForm()
+    return render(request, 'newpost.html', {"form": form})
