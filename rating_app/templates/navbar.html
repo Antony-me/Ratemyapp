@@ -8,17 +8,17 @@
         <div class="collapse navbar-collapse" id="navbarToggle">
           <div class="navbar-nav mr-auto">
             <a class="nav-item nav-link" href=""></a>
-            <li><a class="nav-item nav-link" href="">Add Project</a></li>
+            <li><a class="nav-item nav-link" href="{% url 'rating_app:new_post' %}">Add Project</a></li>
           </div>
           <!-- Navbar Right Side -->
           <div class="navbar-nav">
             {% if request.user.is_authenticated %}
               <li class="nav-item nav-link"></li>
-              <li><a class="nav-item nav-link" href="">Profile</a></li>
-              <li><a class="nav-item nav-link" href="">Sign out</a></li>
+              <li><a class="nav-item nav-link" href="{% url 'rating_app:profile' %}">Profile</a></li>
+              <li><a class="nav-item nav-link" href="{% url 'logout' %}?next={% url 'login'%}">Sign out</a></li>
               {% else %}
-            <a class="nav-item nav-link"  href="">Login</a>
-            <a class="nav-item nav-link" href="">Register</a>
+            <a class="nav-item nav-link"  href="{% url 'login'%}">Login</a>
+            <a class="nav-item nav-link" href="{% url 'rating_app:register'%}">Register</a>
             {%endif%}
           </div>
         </div>

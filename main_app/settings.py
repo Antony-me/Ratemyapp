@@ -39,6 +39,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'bootstrap4',
     'cloudinary',
+    'crispy_forms',
     'rating_app.apps.RatingAppConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -142,3 +143,5 @@ cloudinary.config(
   api_key = "517714219614197", 
   api_secret = "RxTgjb9mL9Wghh3mCPklvlyCoyM" 
 )
+
+CRISPY_TEMPLATE_PACK ='bootstrap4'

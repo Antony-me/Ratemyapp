@@ -1,9 +1,11 @@
-from rating_app.models import Post, Rating
+from .models import Post, Rating, Profile
 from django.shortcuts import render, redirect
-from .models import Profile
 from django.contrib.auth.models import User
-from .forms import NewPostForm, UpdateUserForm, UpdateUserProfileForm
-# Create your views here.
+from .forms import NewPostForm,  ProfileModelForm
+from django.contrib.auth.decorators import login_required
+
+
+@login_required(login_url='/accounts/login/')
 def index(request):
     """
     home view function
@@ -14,6 +16,7 @@ def index(request):
 
     return render (request, 'all_projects/index.html', {'posts':posts, 'users':users, 'user':current_user})
 
+@login_required(login_url='/accounts/login/')
 def new_post(request):
     current_user = request.user
     if request.method == 'POST':
@@ -27,10 +30,10 @@ def new_post(request):
         form = NewPostForm()
     return render(request, 'new_post.html', {"form": form})
 
-def edit_profile(request):
-
+@login_required(login_url='/accounts/login/')
+def profile(request):
     profile = Profile.objects.get(user=request.user)
-    form = UpdateUserProfileForm(request.POST or None, request.FILES or None, instance=profile)
+    form = ProfileModelForm(request.POST or None, request.FILES or None, instance=profile)
     confirm = False
 
 

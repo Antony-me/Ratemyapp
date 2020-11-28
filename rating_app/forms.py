@@ -10,6 +10,7 @@ class ProfileModelForm(forms.ModelForm):
 
 class NewPostForm(forms.ModelForm):
     description = forms.CharField(widget=forms.Textarea(attrs={'rows':2}))
+
     class Meta:
         model = Post
         exclude = ['user', 'post_date']
@@ -18,13 +19,10 @@ class NewPostForm(forms.ModelForm):
         }        
 
 
-class UpdateUserForm(forms.ModelForm):
-    email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
-
+class ProfileModelForm(forms.ModelForm):
     class Meta:
-        model = User
-        fields = ('username', 'email')
-
+        model= Profile
+        fields=('name','bio', 'avatar')
 class UpdateUserProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
