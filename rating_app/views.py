@@ -9,6 +9,7 @@ def index(request):
     """
     projects = Post.objects.all()
     ratings = Rating.objects.all()
+    print(ratings)
 
     return render (request, 'all_projects/index.html', {'projects':projects, 'ratings':ratings})
 
