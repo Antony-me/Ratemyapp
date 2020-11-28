@@ -56,6 +56,7 @@ Rating_CHOICES = (
     (9, 9),
     (10,10),   
 )
+ 
 
 class Rating(models.Model):
     design_vote = models.PositiveIntegerField(choices=Rating_CHOICES, default=1)
@@ -63,6 +64,14 @@ class Rating(models.Model):
     content_vote = models.PositiveIntegerField(choices=Rating_CHOICES, default=1)
     user = models.ForeignKey('Profile', on_delete=models.CASCADE)
     post = models.ForeignKey('Post', on_delete=models.CASCADE)
+    review = models.CharField(max_length=200)
+
 
     def __str__(self):
-        return str(self.post)
+        return self.review
+
+    def save_rating(self):
+        self.save()
+
+    def delete_rating(self):
+        self.delete()
