@@ -28,21 +28,14 @@ def new_post(request):
     return render(request, 'new_post.html', {"form": form})
 
 def edit_profile(request):
-    if request.method == "POST":
-        user_form = UpdateUserForm(request.POST, instance=request.user)
-        prof_form = UpdateUserProfileForm(request.POST, request.FILES, instance=request.user.profile)
-        if user_form.is_valid() and prof_form.is_valid():
-            user_form.save()
-            prof_form.save()
-            return redirect('profile')
-            
-    else:
-        user_form = UpdateUserForm(instance=request.user)
-        prof_form = UpdateUserProfileForm(instance=request.user.profile)
 
-    context = {  
-        'user_form': user_form,
-        'prof_form': prof_form,
-        
-    }
-    return render(request, 'new_profile.html', context )
+    profile = Profile.objects.get(user=request.user)
+    form = UpdateUserProfileForm(request.POST or None, request.FILES or None, instance=profile)
+    confirm = False
+
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            confirm = True
+    return render(request, 'all_projects/update.html', {'confirm':confirm, 'form':form })
