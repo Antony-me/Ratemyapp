@@ -1,0 +1,45 @@
+{%extends "registration/base.html"%}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <!-- <img src="" alt=""> -->
+    <div class="col-md-5 phones" > 
+    </div>
+    <div class="col-md-5 panel-form" >
+      {% if form.errors %}
+        <p> Password or Username is incorrect </p>
+      {% endif %}
+      <div class="panel panel-default">
+
+        <div class="panel-heading">
+          <h3 class="text-center">
+              <!-- <img src="" class="logo" alt=""> -->
+          </h3>
+        </div>
+        <h3>Login</h3>
+        <div class="panel-body">
+          <form  action="/accounts/login/" method="post">
+            {% csrf_token %}
+            {{form|crispy}}
+            <div class="form-group" style=" width: 100%;">
+                <input type="submit" class="btn btn-primary " value="Login"  style="align-items: center; width: 100%;" >
+            </div>
+            <input type="hidden" name="next" value="">
+          </form>
+          <div class="sign-up">
+            Don't have an account?  <a href="/accounts/register/" class="ml-2">Sign Up</a>
+        </div>
+
+        </div>
+
+      </div>
+
+    </div>
+    <!-- empty div -->
+    <!-- <div class="col-md-6"></div> -->
+  </div>
+</div>
+
+{% endblock %}

@@ -7,18 +7,19 @@ def index(request):
     """
     home view function
     """
-    projects = Post.objects.all()
-    ratings = Rating.objects.all()
-    print(ratings)
+    posts = Post.objects.all()
+    # rating_value = Rating.objects.get(id=id)
+    # print(rating_value)
 
-    return render (request, 'all_projects/index.html', {'projects':projects, 'ratings':ratings})
+    return render (request, 'all_projects/index.html', {'posts':posts})
 
 
-# def rate_project(request, project):
-#     current_user = request.user
-#     rating_value = Rating.objects.get(id=project.id)
-#     if rating_value.rating.filter(id=current_user.id).exists():
-#         rating_value.rating.remove(current_user)
-#     else:
-#         rating_value.rating.add(current_user)
-#     return redirect('index')
+def vote(request, post_id):
+    user = request.user
+    if request.method == 'POST':
+        post_id = request.POST.get('post_id')
+        post = Post.objects.get(id=post_id)
+        rating_value = Rating.objects.get(id=post_id)
+        print(rating_value)
+
+    return redirect('index')

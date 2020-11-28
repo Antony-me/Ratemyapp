@@ -1,38 +1,27 @@
-<div class="ui menu nav mb-7">
-  <div class="ui container ">
-    <a href="" class="item">
-      <h3>RateMyApp</h3>
-    </a>
-    <div class="right menu class="topnav" id="myTopnav">
-      {% if request.user.is_authenticated %}
-      <div class="item icon">
-        <form class="navbar-form" role="search" action="">
-          <div class="ui action left icon input">
-            <input class="form-control" type="text"  placeholder="search friend by name..."  name="search_user">
-            <i class="search icon"></i>
-            <button type='submit' class="ui button" role="search" action="">Search</button>
+<header class="site-header">
+    <nav class="navbar navbar-dark bg-primary bg-steel fixed-top">
+      <div class="container">
+        <a class="navbar-brand mr-4" href="/">Rame Me</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarToggle">
+          <div class="navbar-nav mr-auto">
+            <a class="nav-item nav-link" href=""></a>
+            <li><a class="nav-item nav-link" href="">Add Project</a></li>
           </div>
-        </form> 
-
+          <!-- Navbar Right Side -->
+          <div class="navbar-nav">
+            {% if request.user.is_authenticated %}
+              <li class="nav-item nav-link"></li>
+              <li><a class="nav-item nav-link" href="">Profile</a></li>
+              <li><a class="nav-item nav-link" href="">Sign out</a></li>
+              {% else %}
+            <a class="nav-item nav-link"  href="">Login</a>
+            <a class="nav-item nav-link" href="">Register</a>
+            {%endif%}
+          </div>
+        </div>
       </div>
-      <a href="" class="">
-        <!-- <img src="" class="ui avatar image">&nbsp; -->
-        {{ request.user }}
-      </a>
-      <a href="" class="item">
-        All users
-      </a>
-      <a href="" class="item">
-        Requests
-      </a>
-      <a href="" class="ui item">
-        Logout
-      </a>
-      {% else %}
-      <a href="" class="ui item">
-        Login
-      </a>
-      {% endif %}
-    </div>
-  </div>
-</div>
+    </nav>
+</header>
