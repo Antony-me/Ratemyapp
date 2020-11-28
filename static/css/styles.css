@@ -47,3 +47,9 @@ img{
 }
 
 
+.row .jumbotron{
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: repeat(4, ifr);
+    text-align: center;
+}

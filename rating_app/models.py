@@ -30,37 +30,39 @@ class Profile(models.Model):
         instance.profile.save()
 
 
-class Project(models.Model):
+class Post(models.Model):
     title = models.CharField(max_length=150)
     image = CloudinaryField('image', validators=[
                             FileExtensionValidator(['png', 'jpg', 'jpeg'])], blank=True)
     live_link = models.URLField()
     description = models.TextField(blank=True)
     developer = models.ForeignKey('Profile', on_delete=models.CASCADE)
-    created_on = models.DateTimeField(auto_now_add=True)
-
+    uploaded_on = models.DateTimeField(auto_now_add=True)
+    
     def __str__(self):
         return str(self.title[:90])
 
 
 Rating_CHOICES = (
-    (1, '1'),
-    (2, '2'),
-    (3, '3'),
-    (4, '4'),
-    (5, '5'),
-    (6, '6'),
-    (7, '7'),
-    (8, '8'),
-    (9, '9'),
-    (10, '10')
+
+    ('1', '1'),
+    ('2', '2'),
+    ('3', '3'),
+    ('4', '4'),
+    ('5', '5'),
+    ('6', '6'),
+    ('7', '7'),
+    ('8', '8'),
+    ('9', '9'),
+    ('10','10'),   
 )
+
 class Rating(models.Model):
-    design = models.PositiveIntegerField(choices=Rating_CHOICES, default=1)
-    user_expirience = models.PositiveIntegerField(choices=Rating_CHOICES, default=1)
-    content = models.PositiveIntegerField(choices=Rating_CHOICES, default=1)
+    design_vote = models.PositiveIntegerField(choices=Rating_CHOICES, default=1)
+    ux_vote = models.PositiveIntegerField(choices=Rating_CHOICES, default=1)
+    content_vote = models.PositiveIntegerField(choices=Rating_CHOICES, default=1)
     user = models.ForeignKey('Profile', on_delete=models.CASCADE)
-    project = models.ForeignKey('Project', on_delete=models.CASCADE)
+    post = models.ForeignKey('Post', on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.project)

@@ -10,14 +10,12 @@
         <div class="col-md-3" id="work4">
             <a target="_blank" href="{{ project.live_link}}"><img id="port" src="{{project.image.url}}" alt="projec_img"></a>
             <p id="overlay" class="text"><a href="{{ project.live_link}}" target="_blank">Visit site</a></p>
-            <p>{{project.description}}</p>
+            <p>{{project.title}}</p>
+            <p>Design: </p>
+            <p>Usability: </p>
+            <p>Content: </p>
             
         </div>
-        {% for rating in ratings %}
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-graph-up" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M0 0h1v15h15v1H0V0zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5z"/>
-          </svg>
-        {% endfor %}
     </div>
 {% endfor %}
 </div> 
