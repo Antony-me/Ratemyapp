@@ -55,7 +55,8 @@ def project(request, c_id):
     design = Rating.objects.filter(post_id=c_id).aggregate(Avg('design_vote'))
     ux = Rating.objects.filter(post_id=c_id).aggregate(Avg('ux_vote'))
 
-    print("#######")
-    print(ux)
-    print("#########")
-    return render(request, 'all_projects/project.html', {"user": current_user, 'post': post, 'ratings': ratings, "design": design, "content": content, "ux": ux})
+    ux_vote=ux["ux_vote__avg"]
+    design_vote=design["design_vote__avg"]
+    content_vote= content["content_vote__avg"]
+    
+    return render(request, 'all_projects/project.html', {"user": current_user, 'post': post, 'ratings': ratings, "design": design_vote, "content": content_vote, "ux": ux_vote})

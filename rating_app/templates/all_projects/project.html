@@ -7,12 +7,14 @@
  <br> <br> <br>
 <h4>Project Title : {{post.title}}</h4>
 <img src="{{post.image.url}}" alt="">
+<p><a href="{{ post.live_link}}" target="_blank"> Visit site</a></p>
 <h4>Project Description: {{post.description}}</h4>
-{% for rating in ratings %}
-Content:{{rating.content_vote}} <br>
-Usabiity:{{rating.ux_vote}} <br>
-Design:{{rating.design_vote}} 
 
-{% endfor %}
+Content:{{content}} <br>
+Usabiity:{{ux}} <br>
+Design:{{design}} 
+
 
 {% endblock %}
+
+

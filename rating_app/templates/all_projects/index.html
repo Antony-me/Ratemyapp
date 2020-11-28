@@ -10,9 +10,6 @@
             <a href="{% url 'rating_app:project' post.id%}"><img id="port" src="{{post.image.url}}" alt="projec_img"></a>
             <p><a href="{{ post.live_link}}" target="_blank"> Visit site</a></p>
             <p>{{post.title}}</p>
-                <p>Design: {{rating.design}}</p>
-                <p>Usability: {{rating.ux_vote}}</p>
-                <p>Content: {{rating.content}}</p>
         </div>
     </div>
 {% endfor %}
