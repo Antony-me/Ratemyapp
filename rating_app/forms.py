@@ -9,6 +9,7 @@ class ProfileModelForm(forms.ModelForm):
 
 
 class NewPostForm(forms.ModelForm):
+    description = forms.CharField(widget=forms.Textarea(attrs={'rows':2}))
     class Meta:
         model = Post
         exclude = ['user', 'post_date']

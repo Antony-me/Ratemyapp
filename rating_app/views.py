@@ -25,11 +25,9 @@ def new_post(request):
         return redirect('landing')
     else:
         form = NewPostForm()
-    return render(request, 'newpost.html', {"form": form})
+    return render(request, 'new_post.html', {"form": form})
 
 def edit_profile(request):
-    
-    
     if request.method == "POST":
         user_form = UpdateUserForm(request.POST, instance=request.user)
         prof_form = UpdateUserProfileForm(request.POST, request.FILES, instance=request.user.profile)
@@ -37,15 +35,14 @@ def edit_profile(request):
             user_form.save()
             prof_form.save()
             return redirect('profile')
-            # return HttpResponseRedirect(request.path_info)
+            
     else:
         user_form = UpdateUserForm(instance=request.user)
         prof_form = UpdateUserProfileForm(instance=request.user.profile)
 
-    params = {
-        # 'images' : images,   
+    context = {  
         'user_form': user_form,
         'prof_form': prof_form,
         
     }
-    return render(request, 'new_profile.html', params )
+    return render(request, 'new_profile.html', context )
