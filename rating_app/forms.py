@@ -20,9 +20,12 @@ class NewPostForm(forms.ModelForm):
 
 
 class ProfileModelForm(forms.ModelForm):
+    bio = forms.CharField(widget=forms.Textarea(attrs={'rows':2}))
     class Meta:
         model= Profile
-        fields=('name','bio', 'avatar')
+        fields=('name','bio','avatar')
+
+
 class UpdateUserProfileForm(forms.ModelForm):
     class Meta:
         model = Profile

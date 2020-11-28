@@ -25,10 +25,12 @@ def new_post(request):
             post = form.save(commit=False)
             post.user = current_user
             post.save()
-        return redirect('landing')
+        return redirect('rating_app:index')
     else:
         form = NewPostForm()
     return render(request, 'new_post.html', {"form": form})
+
+
 
 @login_required(login_url='/accounts/login/')
 def profile(request):
@@ -41,4 +43,4 @@ def profile(request):
         if form.is_valid():
             form.save()
             confirm = True
-    return render(request, 'all_projects/update.html', {'confirm':confirm, 'form':form })
+    return render(request, 'all_projects/update.html', {'confirm':confirm, 'form':form, 'profile':profile})
