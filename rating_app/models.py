@@ -28,7 +28,9 @@ class Profile(models.Model):
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
         instance.profile.save()
-    classmethod
+
+
+    @classmethod
     def search_profile(cls, name):
         return cls.objects.filter(user__username__icontains=name).all()
 
@@ -44,7 +46,7 @@ class Profile(models.Model):
 
     def update_image(self, user_id, new_image):
         user = User.objects.get(id = user_id)
-        self.photo = new_image 
+        self.avatar = new_image 
         self.save()              
     
 
@@ -83,7 +85,7 @@ class Rating(models.Model):
     content_vote = models.PositiveIntegerField(choices=Rating_CHOICES, default=1)
     user = models.ForeignKey('Profile', on_delete=models.CASCADE)
     post = models.ForeignKey('Post', on_delete=models.CASCADE)
-    review = models.CharField(max_length=200)
+    review = models.CharField(max_length=200, null=True, blank=True)
 
 
     def __str__(self):
