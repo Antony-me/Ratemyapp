@@ -29,7 +29,11 @@
 </head>
 <body>
     {% include 'navbar.html' %}
-    {% block content %}{%endblock%}
+
+    <div class="bc">
+      {% block content %}{%endblock%}
+     
+  </div>
 
 
     {% block scripts %}
@@ -39,6 +43,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
         <script src="{% static '/js/scripts.js'%}"></script>
      {% bootstrap_javascript %}
-    {% endblock %}
+
+     {% endblock %}
+    
 </body>
 </html>

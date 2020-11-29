@@ -1,7 +1,7 @@
 from .models import Post, Rating, Profile
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from .forms import NewPostForm,  ProfileModelForm
+from .forms import NewPostForm,  ProfileModelForm, RatingForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Avg
 from django.http import JsonResponse
@@ -34,6 +34,15 @@ class ProjectList(APIView):
         return Response(serializers.data)
 
 
+    def post(self, request, format=None):
+        serializers = MerchSerializer2(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST )
+
+
+
 
 @login_required(login_url='/accounts/login/')
 def index(request):
@@ -59,7 +68,7 @@ def new_post(request):
         return redirect('rating_app:index')
     else:
         form = NewPostForm()
-    return render(request, 'new_post.html', {"form": form})
+    return render(request, 'all_projects/new_post.html', {"form": form})
 
 
 @login_required(login_url='/accounts/login/')
@@ -84,11 +93,45 @@ def project(request, c_id):
     design = Rating.objects.filter(post_id=c_id).aggregate(Avg('design_vote'))
     ux = Rating.objects.filter(post_id=c_id).aggregate(Avg('ux_vote'))
 
+
     ux_vote=ux["ux_vote__avg"]
     design_vote=design["design_vote__avg"]
     content_vote= content["content_vote__avg"]
     
-    return render(request, 'all_projects/project.html', {"user": current_user, 'post': post, 'ratings': ratings, "design": design_vote, "content": content_vote, "ux": ux_vote})
+
+
+    
+    if request.method == 'POST':
+        form = RatingForm(request.POST)
+        if form.is_valid():
+            rating = form.save(commit=False)
+            rating.project = post
+            rating.user = current_user.profile
+            rating.save()
+            return render(request, 'all_projects/project.html', {"user": current_user, 'form':form, 'post': post, 'ratings': ratings, "design": design_vote, "content": content_vote, "ux": ux_vote})
+    else:
+        form = RatingForm()
+
+    return render(request, 'all_projects/project.html', {"user": current_user, 'form':form, 'post': post, 'ratings': ratings, "design": design_vote, "content": content_vote, "ux": ux_vote})
+
+
+# def new_rating(request, id):
+#     current_user = request.user
+#     current_project = Post.objects.get(id=id)
+#     if request.method == 'POST':
+#         form = RatingForm(request.POST)
+#         if form.is_valid():
+#             rating = form.save(commit=False)
+#             rating.project = current_project
+#             rating.user = current_user
+#             rating.save()
+#             return redirect('rating_app: project', id)
+#     else:
+#         form = RatingForm()
+       
+
+#     return render(request, 'all_projects/new_rating.html', {'form': form})
+
 
 
 # def new_ajaxpost(request):

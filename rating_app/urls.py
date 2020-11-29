@@ -13,6 +13,7 @@ urlpatterns = [
     # url(r'^ajax/new_ajaxpost/$', views.new_ajaxpost, name='new_ajaxpost')
     url(r'^api/profiles/$', views.ProfileList.as_view(), name='profiles_api'),
     url(r'^api/projects/$', views.ProjectList.as_view(), name='projects_api'),
+    # url(r'^new_rating/(\d+)$', views.new_rating, name="new_rating"),
    
     
 ]
