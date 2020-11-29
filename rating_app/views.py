@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from .forms import NewPostForm,  ProfileModelForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Avg
+from django.http import JsonResponse
 
 
 @login_required(login_url='/accounts/login/')
@@ -60,3 +61,18 @@ def project(request, c_id):
     content_vote= content["content_vote__avg"]
     
     return render(request, 'all_projects/project.html', {"user": current_user, 'post': post, 'ratings': ratings, "design": design_vote, "content": content_vote, "ux": ux_vote})
+
+
+def new_ajaxpost(request):
+
+    title = request.POST.get('title')
+    live_link = request.POST.get('live_link')
+    description =  request.POST.get('description')
+    developer = request.POST.get('developer')
+    image=  request.POST.get('image')
+
+    new_ajaxpst= Post(title=title, description=description, developer= developer, live_link=live_link, image=image)
+    new_ajaxpst.save()
+    
+    data = {'success': 'You have  successfully added your peroject'}
+    return JsonResponse(data)

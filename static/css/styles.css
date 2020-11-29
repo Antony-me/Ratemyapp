@@ -53,3 +53,43 @@
     grid-template-columns: repeat(4, ifr);
     text-align: center;
 }
+
+
+.ratings{
+    display: flex;
+    border: 2px solid black;
+    width: 80%;
+    margin: auto;
+    justify-content: space-evenly;
+    background-color: black;
+    
+}
+.counter-up{
+    border: 3px dotted solid red;
+}
+
+
+.content .box .icon{
+    font-size: 35px;
+    color:gold;
+    font-weight: 250;
+
+
+}
+.content .box .text{
+    color: white;
+    font-weight: 500;
+}
+.content .counter{
+    color: gold;
+    font-size: larger;
+    font-weight: 300;
+}
+.counter-up::content{
+    position: absolute; 
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+   
+}
