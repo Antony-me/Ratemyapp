@@ -95,3 +95,9 @@ class Rating(models.Model):
 
     def delete_rating(self):
         self.delete()
+
+class ProfileMerch(models.Model):
+    username = models.CharField(max_length=40)
+    bio = models.TextField(max_length=500, blank=True, default=f'No, bio')
+    projects= models.ForeignKey('Post', on_delete=models.CASCADE)
+    avatar = CloudinaryField('image', default="media/avater.png", validators=[FileExtensionValidator(['png', 'jpg', 'jpeg'])], blank=True)

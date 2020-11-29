@@ -10,6 +10,7 @@ from rest_framework.views import APIView
 from rest_framework import status
 from .serializer import MerchSerializer, MerchSerializer2
 from django.http import HttpResponse, Http404
+from .utilis import truncate
 
 
 class ProfileList(APIView):
@@ -58,16 +59,21 @@ def index(request):
 
 @login_required(login_url='/accounts/login/')
 def new_post(request):
-    current_user = request.user
-    if request.method == 'POST':
-        form = NewPostForm(request.POST, request.FILES)
+    form = NewPostForm()
+    # if request.method == 'POST':
+    #     form = NewPostForm(request.POST)
+    #     if form.is_valid():
+    #         form.save()
+    #         return redirect('project')
+    if request.is_ajax():
+        form = NewPostForm(request.POST)
+        print(request.POST)
         if form.is_valid():
-            post = form.save(commit=False)
-            post.user = current_user
-            post.save()
-        return redirect('rating_app:index')
-    else:
-        form = NewPostForm()
+            form.save()
+            return JsonResponse({
+                'message': 'success'
+            })
+    
     return render(request, 'all_projects/new_post.html', {"form": form})
 
 
@@ -94,13 +100,10 @@ def project(request, c_id):
     ux = Rating.objects.filter(post_id=c_id).aggregate(Avg('ux_vote'))
 
 
-    ux_vote=ux["ux_vote__avg"]
-    design_vote=design["design_vote__avg"]
-    content_vote= content["content_vote__avg"]
-    
+    ux_vote=truncate(ux["ux_vote__avg"], 2)
+    design_vote=truncate(design["design_vote__avg"], 2)
+    content_vote= truncate(content["content_vote__avg"], 2)
 
-
-    
     if request.method == 'POST':
         form = RatingForm(request.POST)
         if form.is_valid():
@@ -115,35 +118,3 @@ def project(request, c_id):
     return render(request, 'all_projects/project.html', {"user": current_user, 'form':form, 'post': post, 'ratings': ratings, "design": design_vote, "content": content_vote, "ux": ux_vote})
 
 
-# def new_rating(request, id):
-#     current_user = request.user
-#     current_project = Post.objects.get(id=id)
-#     if request.method == 'POST':
-#         form = RatingForm(request.POST)
-#         if form.is_valid():
-#             rating = form.save(commit=False)
-#             rating.project = current_project
-#             rating.user = current_user
-#             rating.save()
-#             return redirect('rating_app: project', id)
-#     else:
-#         form = RatingForm()
-       
-
-#     return render(request, 'all_projects/new_rating.html', {'form': form})
-
-
-
-# def new_ajaxpost(request):
-
-#     title = request.POST.get('title')
-#     live_link = request.POST.get('live_link')
-#     description =  request.POST.get('description')
-#     developer = request.POST.get('developer')
-#     image=  request.POST.get('image')
-
-#     new_ajaxpst= Post(title=title, description=description, developer= developer, live_link=live_link, image=image)
-#     new_ajaxpst.save()
-    
-#     data = {'success': 'You have  successfully added your peroject'}
-#     return JsonResponse(data)
