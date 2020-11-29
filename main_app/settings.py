@@ -38,7 +38,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'rest_framework',
-    # 'rest_framework.authtoken',
     'bootstrap4',
     'cloudinary',
     'crispy_forms',

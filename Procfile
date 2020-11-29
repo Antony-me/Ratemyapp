@@ -1,2 +1,2 @@
-web: gunicorn picstagram.wsgi --log-file -
+web: gunicorn main_app.wsgi --log-file -
 
