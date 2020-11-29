@@ -7,78 +7,83 @@
 
 <br> <br> <br>
 
-<h4 class="text-center">Project Title : {{post.title}}</h4>
-<div class="container">
-    <img src="{{post.image.url}}" alt="" width="1100" style="margin: auto;" class="responsive card" data-toggle="modal"
-        data-target="#{{post.id}}""> <br>
-    <hr><p><a href=" {{ post.live_link}}" target="_blank"> Visit site</a></p>
-    <button type="button" class="btn btn-primary btn-success btn-sm" data-toggle="modal"
-        data-target="#exampleModalScrollable">
-        Rate App
-    </button>
+<img src="{{post.image.url}}" alt="" width="1145" height="600" style="margin: auto;" class="responsive card" data-toggle="modal"
+    data-target="#{{post.id}}""> <br>
+        <div class=" container">
+<hr>
+<p><strong>Project Title : {{post.title}}</strong></p>
+<p><strong>Project Description: </strong>{{post.description}}<a href=" {{ post.live_link}}" target="_blank"> Visit site</a></p> 
+<hr>
+<button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+    data-target="#exampleModalScrollable">
+    Rate App
+</button>
 
-    <!-- <h4>Project Description: {{post.description}}</h4> -->
-    <h3 class="text-center">Ratings</h3> <hr>
-    <div class="ratings">
-        <div class="counter-up">
-            <div class="content">
-                <div class="box">
-                    <div class="icon"><i class="fa fa-window-restore"></i></div>
-                    <div class="text">Design</div>
-                    <div class="counter">{{content}} /10</div>
-                </div>
-            </div>
-        </div>
-        <div class="counter-up">
-            <div class="content">
-                <div class="box">
-                    <div class="icon"><i class="fa fa-hand-o-up"></i></div>
-                    <div class="text">Usabiity</div>
-                    <div class="counter">{{ux}} /10</div>
-                </div>
-            </div>
-        </div>
-        <div class="counter-up">
-            <div class="content">
-                <div class="box">
-                    <div class="icon"><i class="fa fa-align-justify"></i></div>
-                    <div class="text">Content</div>
-                    <div class="counter">{{content}} /10</div>
-                </div>
+<!-- <h4>Project Description: {{post.description}}</h4> -->
+<h3 class="text-center">Ratings</h3>
+<hr>
+<div class="ratings">
+    <div class="counter-up">
+        <div class="content">
+            <div class="box">
+                <div class="icon"><i class="fa fa-window-restore"></i></div>
+                <div class="text">Design</div>
+                <div class="counter">{{content}} /10</div>
             </div>
         </div>
     </div>
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalScrollableTitle">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="" method="POST" enctype="multipart/form-data">
-                        <div class="card-body border-0">
-                            {%csrf_token%}
-            
-                            {{form|crispy}}
-            
-                        </div>
-                        <div class="card-footer border-top">
-                            <input type="submit" class="btn btn-success btn-sm btn-lg " value="Rate App" style="margin: auto;">
-            
-                        </div>
-                    </form>
-
-                </div>
-                <div class="modal-footer">
-                </div>
+    <div class="counter-up">
+        <div class="content">
+            <div class="box">
+                <div class="icon"><i class="fa fa-hand-o-up"></i></div>
+                <div class="text">Usabiity</div>
+                <div class="counter">{{ux}} /10</div>
             </div>
         </div>
     </div>
+    <div class="counter-up">
+        <div class="content">
+            <div class="box">
+                <div class="icon"><i class="fa fa-align-justify"></i></div>
+                <div class="text">Content</div>
+                <div class="counter">{{content}} /10</div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr> <br>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalScrollableTitle">Rate Scope</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST" enctype="multipart/form-data">
+                    <div class="card-body border-0">
+                        {%csrf_token%}
+
+                        {{form|crispy}}
+
+                    </div>
+                    <div class="card-footer border-top">
+                        <input type="submit" class="btn btn-success btn-sm btn-lg " value="Rate App"
+                            style="margin: auto;">
+
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
 </div>
 
 <br> <br> <br>

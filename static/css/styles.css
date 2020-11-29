@@ -60,12 +60,9 @@
     width: 100%;
     margin: auto;
     justify-content: space-evenly;
-    background-color: rgb(155, 155, 155);
+    /* background-color: rgb(155, 155, 155); */
     
     
-}
-.counter-up .content{
-    background-color: rgb(155, 155, 155);
 }
 
 
@@ -95,7 +92,7 @@
 }
 
 .bc{
-    background-image: url(../images/endgame.jpg);
+    background-image: url(../images/autum.jpg);
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
@@ -104,7 +101,6 @@
 
 .container{
     border: 1px solid black;
-    background-color: rgb(155, 155, 155);
-    /* margin: 0; */
-    padding: 0 0;
+    background-color: rgb(255, 248, 248);
+    padding: 5px , 0, ;
 }
