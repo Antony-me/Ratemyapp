@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^project/(\d+)$', views.project, name='project'),
     # url(r'^ajax/new_ajaxpost/$', views.new_ajaxpost, name='new_ajaxpost')
     url(r'^api/profiles/$', views.ProfileList.as_view()),
+    url(r'^api/projects/$', views.ProjectList.as_view()),
    
     
 ]

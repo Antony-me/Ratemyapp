@@ -17,7 +17,23 @@ class ProfileList(APIView):
         all_merch = Profile.objects.all()
         serializers = MerchSerializer(all_merch, many=True)
         return Response(serializers.data)
-        
+
+    def post(self, request, format=None):
+        serializers = MerchSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+class ProjectList(APIView):
+    def get(self, request, format=None):
+        all_merch = Post.objects.all()
+        serializers = MerchSerializer(all_merch, many=True)
+        return Response(serializers.data)
+
+
 
 @login_required(login_url='/accounts/login/')
 def index(request):
