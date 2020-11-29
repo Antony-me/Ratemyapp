@@ -4,7 +4,7 @@ $(document).ready(function(){
       form = $("form")
   
       $.ajax({
-        'url':'/ajax/news_post/',
+        'url':'/ajax/new_ajaxpost/',
         'type':'POST',
         'data':form.serialize(),
         'dataType':'json',
@@ -16,7 +16,7 @@ $(document).ready(function(){
       $("#id_image").val('')
       $("#id_live_link").val('')
       $("#id_description").val('')
-      $("#id_developer").val('')
+      $("#id_developer").val()
     }) // End of submit event
   
   }) // End of document ready function

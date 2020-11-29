@@ -5,7 +5,19 @@ from .forms import NewPostForm,  ProfileModelForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Avg
 from django.http import JsonResponse
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework import status
+from .serializer import MerchSerializer
+from django.http import HttpResponse, Http404
 
+
+class ProfileList(APIView):
+    def get(self, request, format=None):
+        all_merch = Profile.objects.all()
+        serializers = MerchSerializer(all_merch, many=True)
+        return Response(serializers.data)
+        
 
 @login_required(login_url='/accounts/login/')
 def index(request):
@@ -63,16 +75,16 @@ def project(request, c_id):
     return render(request, 'all_projects/project.html', {"user": current_user, 'post': post, 'ratings': ratings, "design": design_vote, "content": content_vote, "ux": ux_vote})
 
 
-def new_ajaxpost(request):
+# def new_ajaxpost(request):
 
-    title = request.POST.get('title')
-    live_link = request.POST.get('live_link')
-    description =  request.POST.get('description')
-    developer = request.POST.get('developer')
-    image=  request.POST.get('image')
+#     title = request.POST.get('title')
+#     live_link = request.POST.get('live_link')
+#     description =  request.POST.get('description')
+#     developer = request.POST.get('developer')
+#     image=  request.POST.get('image')
 
-    new_ajaxpst= Post(title=title, description=description, developer= developer, live_link=live_link, image=image)
-    new_ajaxpst.save()
+#     new_ajaxpst= Post(title=title, description=description, developer= developer, live_link=live_link, image=image)
+#     new_ajaxpst.save()
     
-    data = {'success': 'You have  successfully added your peroject'}
-    return JsonResponse(data)
+#     data = {'success': 'You have  successfully added your peroject'}
+#     return JsonResponse(data)
