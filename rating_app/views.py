@@ -8,7 +8,7 @@ from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
-from .serializer import MerchSerializer
+from .serializer import MerchSerializer, MerchSerializer2
 from django.http import HttpResponse, Http404
 
 
@@ -23,14 +23,14 @@ class ProfileList(APIView):
         if serializers.is_valid():
             serializers.save()
             return Response(serializers.data, status=status.HTTP_201_CREATED)
-        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST )
 
 
 
 class ProjectList(APIView):
     def get(self, request, format=None):
         all_merch = Post.objects.all()
-        serializers = MerchSerializer(all_merch, many=True)
+        serializers = MerchSerializer2(all_merch, many=True)
         return Response(serializers.data)
 
 
