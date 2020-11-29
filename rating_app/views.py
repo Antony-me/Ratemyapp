@@ -100,9 +100,9 @@ def project(request, c_id):
     ux = Rating.objects.filter(post_id=c_id).aggregate(Avg('ux_vote'))
 
 
-    ux_vote=truncate(ux["ux_vote__avg"], 2)
-    design_vote=truncate(design["design_vote__avg"], 2)
-    content_vote= truncate(content["content_vote__avg"], 2)
+    ux_vote=ux["ux_vote__avg"]
+    design_vote=design["design_vote__avg"]
+    content_vote= content["content_vote__avg"]
 
     if request.method == 'POST':
         form = RatingForm(request.POST)
