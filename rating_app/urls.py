@@ -11,9 +11,6 @@ urlpatterns = [
     path('ajax/new_post/', views.new_post, name='new_post'),
     url(r'^project/(\d+)$', views.project, name='project'),
     url(r'^api/profiles/$', views.ProfileList.as_view(), name='profiles_api'),
-    url(r'^api/projects/$', views.ProjectList.as_view(), name='projects_api'),
-    # url(r'^new_rating/(\d+)$', views.new_rating, name="new_rating"),
-   
-    
+    url(r'^api/projects/$', views.ProjectList.as_view(), name='projects_api'),  
 ]
     
