@@ -1,4 +1,7 @@
-
+*{
+    font-family: 'Neucha', cursive;
+    font-size: large;
+}
 .projects{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     display: flex;
@@ -36,7 +39,7 @@
 }
 
 .col-md-3 img{
-    width: 350px;
+    width: 320px;
     height: 250px;
     margin: 5px;
     
@@ -68,17 +71,17 @@
 
 .content .box .icon{
     font-size: 35px;
-    color:blue;
+    color:chocolate;
     font-weight: 250;
 
 
 }
 .content .box .text{
-    color: blue;
+    color: chocolate;
     font-weight: 500;
 }
 .content .counter{
-    color: blue;
+    color: chocolate;
     font-size: larger;
     font-weight: 300;
 }
@@ -90,9 +93,8 @@
     width: 100%;
    
 }
-
-.bc{
-    background-image: url("https://res.cloudinary.com/dpcrhvllf/image/upload/v1606688996/lt77yuz7hcnefadhjjuq.jpg");
+.jumbotron, .bc{
+    background-image: url("https://res.cloudinary.com/dpcrhvllf/image/upload/v1606699517/a3tklmouxnpuda9dp4lf.jpg");
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
@@ -102,5 +104,18 @@
 .container{
     border: 1px solid black;
     background-color: rgb(255, 248, 248);
-    padding: 5px , 0, ;
+    padding-bottom: 5px;
+}
+
+.navbar{
+    padding-bottom: 50px;
+    color: white;
+    font-weight: 900;
+    font-size: large;
+    color: rgb(40, 65, 65);
+}
+
+.work4{
+    border: 1px dotted white;
+    padding: 0, 20px;
 }

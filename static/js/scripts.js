@@ -1,22 +1,5 @@
-// const form = getElementById('#n_form')
-// form.addEventListner("submit", submitHandler);
-
-// function submitHandler(e){
-//     e.preventDefault();
-//     $.ajax({
-//         type: 'POST',
-//         url: '/ajax/new_post',
-//         data:$('#n_form').serialize(),
-//         dataType:'json',
-//         success: function(data){
-//             if (data.msg === 'success'){
-//                 alert('Your Form is submited')
-//             }
-//         }
-//     })
-// }
 $(document).ready(function(){
-    $('form').submit(function(event){
+    $('#n_form').submit(function(event){
       event.preventDefault()
       form = $("form")
   
@@ -33,6 +16,27 @@ $(document).ready(function(){
       $("#id_live_link").val('')
       $("#id_description").val('')
       $("#id_image").val('')
+    })
+
+    $('#np_form').submit(function(event){
+      event.preventDefault()
+      form = $("form")
+  
+      $.ajax({
+        'url':'/project/',
+        'type':'POST',
+        'data':form.serialize(),
+        'dataType':'json',
+        'success': function(data){
+          alert(data['success'])
+        },
+      })// END of Ajax method
+      $('#id_design_vote').val('')
+      $("#id_ux_vote").val('')
+      $("#id_content_vote").val('')
+      $("#id_review").val('')
     }) // End of submit event
   
-  }) // End of document ready function
+  }) 
+
+  

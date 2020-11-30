@@ -1,29 +1,31 @@
-<header class="site-header">
-    <nav class="navbar navbar-dark bg-primary bg-steel fixed-top">
-      <!-- <div class="container"> -->
-        <a class="navbar-brand mr-4" href="/">Rame Me</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarToggle">
-          <div class="navbar-nav mr-auto">
-            <a class="nav-item nav-link" href=""></a>
-            <li><a class="nav-item nav-link" href="{% url 'rating_app:new_post' %}">Add Project</a></li>
-            <li><a class="nav-item nav-link" href="{% url 'rating_app:profiles_api' %}">Profile API</a></li>
-            <li><a class="nav-item nav-link" href="{% url 'rating_app:projects_api' %}">Projects API</a></li>
-          </div>
-          <!-- Navbar Right Side -->
-          <div class="navbar-nav">
-            {% if request.user.is_authenticated %}
-              <li class="nav-item nav-link"></li>
-              <li><a class="nav-item nav-link" href="{% url 'rating_app:profile' %}">Profile</a></li>
-              <li><a class="nav-item nav-link" href="{% url 'logout' %}?next={% url 'login'%}">Sign out</a></li>
-              {% else %}
-            <a class="nav-item nav-link"  href="{% url 'login'%}">Login</a>
-            <a class="nav-item nav-link" href="{% url 'rating_app:register'%}">Register</a>
-            {%endif%}
-          </div>
-        <!-- </div> -->
+<header class="site-header" >
+  <nav class="navbar  navbar-expand-lg navbar-dark   fixed-top" style="background-color: chocolate;">
+    <!-- <div class="container"> -->
+    <h1><a class="navbar-brand mr-4" href="/">Rate-Me</a></h1>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"
+      aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarToggle">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" href="">{{request.user}}</a>
+        <li><a class="nav-item nav-link" href="{% url 'rating_app:new_post' %}">Add Project</a></li>
+        <li><a class="nav-item nav-link" href="{% url 'rating_app:profiles_api' %}">Profile API</a></li>
+        <li><a class="nav-item nav-link" href="{% url 'rating_app:projects_api' %}">Projects API</a></li>
       </div>
-    </nav>
+      <!-- Navbar Right Side -->
+      {% if request.user.is_authenticated %}
+      <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a class="nav-item nav-link" href="{% url 'rating_app:profile' %}">Profile</a></li>
+
+          <li class="nav-item"><a class="nav-item nav-link" href="{% url 'rating_app:profile' %}">Profile</a></li>
+          <li><a class="nav-item nav-link" href="{% url 'logout' %}?next={% url 'login'%}">Sign out</a></li>
+
+          {% else %}
+          <a class="nav-item nav-link" href="{% url 'login'%}">Login</a>
+          <a class="nav-item nav-link" href="{% url 'rating_app:register'%}">Register</a>
+          {%endif%}
+      </div>
+  </nav>
 </header>

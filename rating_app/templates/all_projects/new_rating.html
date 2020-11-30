@@ -1,7 +1,7 @@
 {%extends "registration/base.html"%}
 {% load crispy_forms_tags %}
 {% block content %}
-<form  action="/accounts/login/" method="post">
+<form  action="" method="post" id="np_form" style="padding-top: 150px;">
     {% csrf_token %}
     {{form|crispy}}
     <div class="form-group" style=" width: 100%;">
