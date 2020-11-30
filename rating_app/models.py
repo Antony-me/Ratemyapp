@@ -79,11 +79,11 @@ Rating_CHOICES = (
 )
  
 class Rating(models.Model):
+    post = models.ForeignKey('Post', on_delete=models.CASCADE)
     design_vote = models.PositiveIntegerField(choices=Rating_CHOICES, default=0)
     ux_vote = models.PositiveIntegerField(choices=Rating_CHOICES, default=0)
     content_vote = models.PositiveIntegerField(choices=Rating_CHOICES, default=0)
     user = models.ForeignKey('Profile', on_delete=models.CASCADE)
-    post = models.ForeignKey('Post', on_delete=models.CASCADE)
     review = models.CharField(max_length=200, null=True, blank=True)
 
 
