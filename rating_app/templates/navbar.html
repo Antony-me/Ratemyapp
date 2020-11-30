@@ -9,9 +9,9 @@
     <div class="collapse navbar-collapse" id="navbarToggle">
       <div class="navbar-nav">
         <a class="nav-item nav-link" href="">{{request.user}}</a>
-        <li><a class="nav-item nav-link" href="{% url 'rating_app:new_post' %}">Add Project</a></li>
-        <li><a class="nav-item nav-link" href="{% url 'rating_app:profiles_api' %}">Profile API</a></li>
-        <li><a class="nav-item nav-link" href="{% url 'rating_app:projects_api' %}">Projects API</a></li>
+        <li><a class="nav-item nav-link" href="{% url 'rating_app:new_post' %}">AddPost</a></li>
+        <li><a class="nav-item nav-link" href="{% url 'rating_app:profiles_api' %}">ProfileAPI</a></li>
+        <li><a class="nav-item nav-link" href="{% url 'rating_app:projects_api' %}">ProjectsAPI</a></li>
       </div>
       <!-- Navbar Right Side -->
       {% if request.user.is_authenticated %}
