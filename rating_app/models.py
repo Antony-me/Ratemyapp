@@ -15,7 +15,7 @@ class Profile(models.Model):
                            default=f'Hello, I am new here!')
 
     def __str__(self):
-        return f'{self.user.username} profile'
+        return self.user.username
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
