@@ -34,7 +34,7 @@ Virtualenvironment.
 A text editor.
 
 ##### Setup Instructions and Installation
-- Clone the repository to a directory in you computer. Link to repo https://github.com/Antony-me/Gallary
+- Clone the repository to a directory in you computer. Link to repo https://github.com/Antony-me/Ratemyapp
 - Open terminal command line then navigate to the directory.
 - Run app using python manage.py runsearver
 
