@@ -59,22 +59,18 @@ def index(request):
 
 @login_required(login_url='/accounts/login/')
 def new_post(request):
-    form = NewPostForm()
-    # if request.method == 'POST':
-    #     form = NewPostForm(request.POST)
-    #     if form.is_valid():
-    #         form.save()
-    #         return redirect('project')
-    if request.is_ajax():
-        form = NewPostForm(request.POST)
-        print(request.POST)
+    current_user = request.user
+    if request.method == 'POST':
+        form = NewPostForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            return JsonResponse({
-                'message': 'success'
-            })
-    
+            post = form.save(commit=False)
+            post.user = current_user
+            post.save()
+        return redirect('rating_app:index')
+    else:
+        form = NewPostForm()
     return render(request, 'all_projects/new_post.html', {"form": form})
+
 
 
 @login_required(login_url='/accounts/login/')
@@ -91,13 +87,13 @@ def profile(request):
     return render(request, 'all_projects/update.html', {'confirm': confirm, 'form': form, 'profile': profile})
 
 
-def project(request, c_id):
+def project(request, p_id):
     current_user = request.user
-    post = Post.objects.get(id=c_id)
-    ratings = Rating.objects.filter(post_id=c_id)
-    content = Rating.objects.filter(post_id=c_id).aggregate(Avg('content_vote'))
-    design = Rating.objects.filter(post_id=c_id).aggregate(Avg('design_vote'))
-    ux = Rating.objects.filter(post_id=c_id).aggregate(Avg('ux_vote'))
+    post = Post.objects.get(id=p_id)
+    ratings = Rating.objects.filter(post_id=p_id)
+    content = Rating.objects.filter(post_id=p_id).aggregate(Avg('content_vote'))
+    design = Rating.objects.filter(post_id=p_id).aggregate(Avg('design_vote'))
+    ux = Rating.objects.filter(post_id=p_id).aggregate(Avg('ux_vote'))
 
     
     ux_vote=ux["ux_vote__avg"]

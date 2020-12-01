@@ -1,3 +1,4 @@
+
 {% extends 'all_projects/base.html' %}
 {% load bootstrap4 %}
 {% load static %}
@@ -9,7 +10,7 @@
 		<div class="card-header border-bottom">
       <h3>ADD YOU PROJECT</h3>
 		</div>
-		<form action="{% url 'rating_app:new_post' %}" method="POST" enctype="multipart/form-data" id="n_form">
+		<form action="" method="POST" enctype="multipart/form-data">
 			<div class="card-body border-0">
 				{%csrf_token%}
 
